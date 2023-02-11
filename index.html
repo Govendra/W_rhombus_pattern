@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .output {
+            height: 90vh;
+            border: 1px red solid;
+            font-size: 50px;
+            padding: 10px;
+            line-height: 40px;
+        }
+
+        .selbox {
+            text-align: center;
+        }
+
+        select {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- W Pattern Printing -->
+    <section>
+        <div class="selbox">
+            <select name="" id="wSelector">
+                <option value="0">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+        <div class="output" id="main"></div>
+        <script>
+            var main = document.getElementById("main")
+            var wSelector = document.getElementById("wSelector")
+            function wGen() {
+                // var main = document.getElementById("main")
+                output = ""
+                n = wSelector.value
+                for (let i = 0; i < n; i++) {
+                    for (let j = 0; j < i; j++) {
+                        output += "&nbsp"
+                    }
+                    output += "\\"
+                    kRange = (n - i - 1)
+                    for (let k = 1; k <= kRange; k++) {
+                        // console.log(kRange)
+                        output += "&nbsp;&nbsp;"
+                    }
+                    output += "/"
+                    lRange = i * 2
+                    for (let l = 0; l < lRange; l++) {
+                        output += "&nbsp;"
+                    }
+                    output += "\\"
+                    kRange = (n - i - 1)
+                    for (let k = 1; k <= kRange; k++) {
+                        // console.log(kRange)
+                        output += "&nbsp;&nbsp;"
+                    }
+                    output += "/"
+                    output += "<br>"
+                }
+                main.innerHTML = output
+            }
+            wSelector.addEventListener("change", wGen)
+        </script>
+    </section>
+
+    <!-- W Pattern Printing -->
+    <section>
+        <div class="selbox">
+            <select name="" id="rhSelector">
+                <option value="0">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+            <select name="" id="rType">
+                <option value="">Select</option>
+                <option value="Int">Int</option>
+                <option value="Star">Star</option>
+            </select>
+        </div>
+        <div class="output" id="rhombus"></div>
+        <script>
+            var rhombus = document.getElementById("rhombus")
+            var rhSelector = document.getElementById("rhSelector")
+            var selRType = document.getElementById("rType")
+            
+            function wGen() {
+                // var main = document.getElementById("main")
+                var rType = document.getElementById("rType").value
+                output = ""
+                n = rhSelector.value
+                for (let i = 0; i <= n; i++) {
+                    for (let sp = 0; sp < n - i; sp++) {
+                        output += "&nbsp; &nbsp;"
+                    }
+                    for (let text = 0; text <= i; text++) {
+                        if (rType == "Int") {
+                            output += text + "&nbsp;"
+                        } else if(rType=="Star"){
+                            output += "*&nbsp;"
+                        }
+                    }
+                    for (let rText = i - 1; rText >= 0; rText--) {
+                        if (rType == "Int") {
+                            output+=rText+"&nbsp;"
+                        } else if(rType=="Star"){
+                            output += "*&nbsp;"
+                        }
+                    }
+                    output += "<br>"
+                }
+                // n++
+                for (let i = 1; i <= n; i++) {
+                    for (let sp = 0; sp < i; sp++) {
+                        output += "&nbsp; &nbsp;"
+                    }
+                    for (let text = 0; text < n - i + 1; text++) {
+                        if (rType == "Int") {
+                            output+=text+"&nbsp;"
+                        } else if(rType=="Star"){
+                            output += "*&nbsp;"
+                        }
+                    }
+                    for (let rText = n - i - 1; rText >= 0; rText--) {
+                        if(rType=="Int"){
+                            output+=rText+"&nbsp;"
+                        }else if(rType=="Star"){
+                            output += "*&nbsp;"
+                        }
+                    }
+                    output += "<br>"
+                }
+
+                rhombus.innerHTML = output
+            }
+            rhSelector.addEventListener("change", wGen)
+            selRType.addEventListener("change", wGen)
+        </script>
+    </section>
+
+
+</body>
+
+</html>
